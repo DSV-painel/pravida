@@ -260,6 +260,32 @@
   }
   .gantt-tooltip .tt-title{ font-weight:800; margin-bottom:6px; }
   .gantt-tooltip .tt-meta{ opacity:.9; }
+.action-cell{ text-transform:uppercase; font-weight:600; }
+
+  /* ===== Gantt (versão mais limpa) ===== */
+  .gantt-legend{ display:none !important; } /* remove legenda para visual mais executivo */
+  .gantt{ border-color:#e9e9e9; box-shadow: 0 6px 18px rgba(0,0,0,.04); }
+  .gantt-header{ background:#fbfbfb; }
+  .fixed-col-head{ background:#fbfbfb; border-right:1px solid #eeeeee; }
+  .month{ border-right:1px solid #f0f0f0; color:#666; font-weight:700; }
+  .fixed-col{ background:#fff; }
+  .fixed-row:nth-child(even){ background:#fcfcfc; } /* zebrado leve */
+  .fixed-row{ border-bottom:1px solid #f3f3f3; }
+  .timeline-scroll{ background:#fff; }
+  .timeline-inner{
+    background:none; /* tira grade/repetição */
+  }
+  .trow:nth-child(even){ background:#fcfcfc; } /* zebrado leve também na linha do tempo */
+  .trow{ border-bottom:1px solid #f3f3f3; }
+  .gbar{
+    height:10px;
+    border-radius:999px; /* pílula */
+    box-shadow:none;
+    border: none;
+  }
+  .gbar.small{ height:8px; }
+  .footnote{ display:none; } /* remove rodapé para versão limpa */
+
 </style>
 </head>
 
@@ -336,9 +362,7 @@
             <div class="left">
               <div class="scenario-title">Cenário 1: Desafios na Aprovação de Projetos Municipais</div>
               <p class="scenario-desc">
-                Atualmente, enfrentamos dificuldade de realizar apontamentos e adequações necessárias para os municípios,
-                podendo resultar em desclassificação e redução do alcance. Há risco de não conseguir assinatura dos convênios
-                antes do período de defeso, considerando análise por AETA/DAL e trâmite na Casa Civil.
+                Atualmente, enfrentamos a dificuldade de realizar os apontamentos e adequações necessárias para os municípios. Isso pode resultar na desclassificação daqueles que ainda não enviaram projetos adequados, o que prejudicaria nosso alcance e a capacidade de atender a mais municípios. Além disso, corremos o risco de não conseguir a assinatura dos convênios antes do período de defeso, tendo em vista a necessidade de análise pelas demais áreas (AETA, DAL) e o trâmite de aprovação na Casa Civil.
               </p>
             </div>
             <div class="chev">⌄</div>
@@ -411,9 +435,7 @@
             <div class="left">
               <div class="scenario-title">Cenário 2: Oportunidades para Orientação Técnica e Análise dos Projetos Municipais</div>
               <p class="scenario-desc">
-                Neste cenário, será possível fornecer orientações técnicas aos municípios, permitindo curadoria e análise mais eficazes,
-                incluindo municípios com potencial para corrigir projetos. Convênios poderão ser assinados durante o período de defeso eleitoral,
-                com repasse após vedação, mediante reserva orçamentária e antes do encerramento do exercício.
+                Neste cenário, será possível fornecer orientações técnicas aos municípios, permitindo uma curadoria e análise mais eficazes. Isso incluirá todos os municípios com potencial para corrigir seus projetos. Os convênios poderão ser assinados durante o período de defeso eleitoral, e o repasse financeiro ocorrerá após o término da vedação, desde que haja reserva orçamentária e que isso aconteça antes do encerramento do exercício financeiro.  Na manifestação de interesse temos a informação que 49 municipios já possuem contrato.
                 <br><br><b>Obs.:</b> Na manifestação de interesse, há informação de que <b>49 municípios já possuem contrato</b>.
               </p>
             </div>
@@ -487,8 +509,7 @@
             <div class="left">
               <div class="scenario-title">Cenário 3: Oportunidades para Orientação Técnica e Análise dos Projetos Municipais</div>
               <p class="scenario-desc">
-                Neste cenário, será possível fornecer orientações técnicas e curadoria. Os convênios serão assinados em janeiro de 2027,
-                após abertura do exercício financeiro.
+                Neste cenário, será possível fornecer orientações técnicas aos municípios, permitindo uma curadoria e análise mais eficazes. Isso incluirá todos os municípios com potencial para corrigir seus projetos. Os convênios serão assinados em janeiro de 2027 após abertura do exercício financeiro.
               </p>
             </div>
             <div class="chev">⌄</div>
@@ -649,6 +670,22 @@
     return `${dd}/${mm}/${d.getFullYear()}`;
   }
 
+  function businessDaysInclusive(d1, d2){
+    if(!d1 || !d2) return "";
+    // garante ordem
+    let start = new Date(d1), end = new Date(d2);
+    if(end < start){ const tmp=start; start=end; end=tmp; }
+
+    let count = 0;
+    const cur = new Date(start);
+    while(cur <= end){
+      const day = cur.getDay(); // 0 dom, 6 sáb
+      if(day !== 0 && day !== 6) count++;
+      cur.setDate(cur.getDate()+1);
+    }
+    return String(count);
+  }
+
   // Data (mesmos dados do painel anterior)
   const tasksC1 = [
     {acao:"Triagem final das propostas técnicas",inicio:"02/mar",fim:"06/mar",diasUteis:"",resp:"DSV-CIST",
@@ -797,10 +834,13 @@
     tasks.forEach(t=>{
       const tr = document.createElement("tr");
 
-      const tdA = document.createElement("td"); tdA.textContent = t.acao || "-";
+      const tdA = document.createElement("td"); tdA.className="action-cell"; tdA.textContent = t.acao || "-";
       const tdI = document.createElement("td"); tdI.className="mono td-small"; tdI.textContent = t.inicio || "-";
       const tdF = document.createElement("td"); tdF.className="mono td-small"; tdF.textContent = t.fim || "-";
-      const tdDU= document.createElement("td"); tdDU.className="mono td-small"; tdDU.textContent = (t.diasUteis && String(t.diasUteis).trim()) ? t.diasUteis : "-";
+      const tdDU= document.createElement("td"); tdDU.className="mono td-small"; const diCalc = parsePtDate(t.inicio);
+      const dfCalc = parsePtDate(t.fim);
+      const duCalc = (diCalc && dfCalc) ? businessDaysInclusive(diCalc, dfCalc) : "";
+      tdDU.textContent = (t.diasUteis && String(t.diasUteis).trim()) ? t.diasUteis : (duCalc ? duCalc : "-");
 
       const tdR = document.createElement("td");
       const span = document.createElement("span");
@@ -930,7 +970,8 @@
         bar.style.width=Math.max(8, dur*dayCol)+"px";
 
         const diasCorridos = daysInclusive(di, df);
-        const diasUteis = (t.diasUteis && String(t.diasUteis).trim()) ? t.diasUteis : "-";
+        const duCalc = businessDaysInclusive(di, df);
+        const diasUteis = (t.diasUteis && String(t.diasUteis).trim()) ? t.diasUteis : (duCalc ? duCalc : "-");
 
         bar.dataset.title = t.acao || "Ação";
         bar.dataset.tip = `${t.inicio} → ${t.fim} • ${diasCorridos} dia(s) corridos • ${diasUteis} dia(s) úteis • ${t.resp || "-"}`;
