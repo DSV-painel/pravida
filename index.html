@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PRaVida — Relatório Executivo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body{ margin:0; font-family:'Open Sans', Arial, sans-serif; background:#ffffff; color:#333; }
+  .wrap{ max-width:1100px; margin:auto; padding:30px 20px 40px; }
+
+  .logo{ text-align:center; margin-bottom:5px; }
+  .logo img{ height:45px; }
+
+  h1{ margin:10px 0; font-size:26px; text-align:center; font-weight:800; }
+  .sub{ color:#555; font-size:14px; margin-bottom:25px; text-align:center; }
+
+  .tabs{ display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; justify-content:center; }
+  .tab{ padding:10px 14px; border:1px solid #ccc; background:#f5f5f5; border-radius:8px; cursor:pointer; font-weight:800; }
+  .tab.active{ background:#eaeaea; }
+  .panel{ display:none; }
+  .panel.active{ display:block; }
+
+  .card{ border:1px solid #ddd; padding:20px; border-radius:12px; margin-bottom:20px; background:#fafafa; }
+
+  .kpis{ display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-top:15px; }
+  @media (max-width:800px){ .kpis{ grid-template-columns:1fr; } }
+
+  .kpi{ border:1px solid #ddd; border-radius:12px; padding:15px; background:white; }
+  .kpi .label{ font-size:13px; color:#666; }
+  .kpi .value{ font-size:28px; font-weight:800; margin-top:5px; }
+
+  .mi-bar{ height:12px; background:#eee; border-radius:10px; margin-top:6px; overflow:hidden; border:1px solid #e2e2e2; }
+  .mi-fill{ height:100%; background:#2e7d32; }
+  .mi-fill.red{ background:#c62828; }
+
+  .note{ margin-top:15px; font-size:13px; color:#555; }
+
+  /* ===== Cenários (Accordion) ===== */
+  .scenario{ margin-top:15px; }
+
+  .scenario-head{
+    border:1px solid #ddd;
+    padding:16px;
+    border-radius:12px;
+    background:white;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:14px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .scenario-head:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    border-color:#cfcfcf;
+  }
+  .scenario-head .left{ flex:1; }
+  .scenario-title{ font-weight:800; margin:0 0 8px 0; }
+  .scenario-desc{ margin:0; color:#555; }
+  .chev{
+    width:34px; height:34px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    background:#fafafa;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px;
+    flex:0 0 auto;
+    transition: transform .15s ease;
+  }
+  .scenario-item.open .chev{ transform: rotate(180deg); }
+
+  .scenario-body{
+    display:none;
+    margin-top:10px;
+    border:1px solid #e6e6e6;
+    border-radius:12px;
+    background:#fff;
+    overflow:hidden;
+  }
+  .scenario-item.open .scenario-body{ display:block; }
+
+  .body-inner{ padding:14px; }
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:12px 14px;
+    background:#f7f7f7;
+    border-bottom:1px solid #e9e9e9;
+  }
+  .section-head .t{ font-weight:800; font-size:13px; }
+  .section-head .m{ font-size:12px; color:#666; }
+
+  /* ===== Tabela ===== */
+  table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+  th{
+    text-align:left;
+    background:#fafafa;
+    padding:10px 12px;
+    border-bottom:1px solid #eee;
+    color:#444;
+    font-size:11.5px;
+    letter-spacing:.2px;
+    text-transform:uppercase;
+  }
+  td{
+    padding:10px 12px;
+    border-bottom:1px solid #f0f0f0;
+    vertical-align:top;
+    color:#333;
+  }
+  tr:hover td{ background:#fcfcfc; }
+  .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; }
+  .td-small{ white-space:nowrap; }
+  .badge-resp{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:999px;
+    border:1px solid #e6e6e6;
+    background:#fafafa;
+    font-size:12px;
+    font-weight:800;
+    color:#444;
+    white-space:nowrap;
+  }
+
+  /* ===== Gantt ===== */
+  .gantt-wrap{ padding:10px 0 0; }
+  .gantt-legend{
+    display:flex; gap:10px; flex-wrap:wrap;
+    font-size:12px; color:#666; margin:10px 0 8px;
+  }
+  .lg{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid #eee; background:#fafafa;
+    padding:6px 10px; border-radius:999px;
+  }
+  .sw{ width:12px; height:12px; border-radius:3px; background:#2f6df6; }
+
+  .gantt{
+    border:1px solid #eee; border-radius:12px;
+    overflow:hidden; background:#fff;
+  }
+  .gantt-header{
+    display:flex; align-items:stretch;
+    background:#fafafa; border-bottom:1px solid #eee;
+  }
+  .fixed-col-head{
+    width:360px;
+    padding:10px 12px;
+    font-weight:800;
+    font-size:12px;
+    border-right:1px solid #eee;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    box-sizing:border-box;
+  }
+  .fixed-col-head .range{ font-size:11px; color:#666; font-weight:700; }
+
+  .months-scroll{ overflow:auto; flex:1; }
+  .months-row{ display:flex; font-size:12px; color:#555; white-space:nowrap; }
+  .month{
+    box-sizing:border-box;
+    padding:10px 0;
+    border-right:1px solid #eee;
+    font-weight:800;
+    text-align:center;
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+
+  .gantt-body{ display:flex; align-items:stretch; }
+
+  :root { --rowH: 56px; }
+  .fixed-col{
+    width:360px;
+    border-right:1px solid #eee;
+    background:#fff;
+  }
+  .fixed-row{
+    height:var(--rowH);
+    border-bottom:1px solid #f2f2f2;
+    padding:8px 12px;
+    display:flex;
+    align-items:center;
+    font-size:12.5px;
+    font-weight:600;
+    color:#333;
+    box-sizing:border-box;
+
+    white-space:normal;
+    line-height:1.25;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  .timeline-scroll{ overflow:auto; flex:1; background:#fff; }
+  .timeline-inner{
+    position:relative;
+    width: var(--timelineWidth);
+    min-height: 420px;
+    background:
+      repeating-linear-gradient(
+        to right,
+        rgba(0,0,0,0.045),
+        rgba(0,0,0,0.045) 1px,
+        transparent 1px,
+        transparent var(--dayCol)
+      );
+  }
+  .trow{ position:relative; height:var(--rowH); border-bottom:1px solid #f2f2f2; }
+
+  .gbar{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    height:14px;
+    border-radius:6px;
+    background:#2f6df6;
+    box-shadow:0 2px 4px rgba(0,0,0,0.10);
+    border:1px solid rgba(0,0,0,0.05);
+    cursor:default;
+  }
+  .gbar.small{ height:12px; }
+
+  .footnote{
+    padding:10px 12px 12px;
+    font-size:12px;
+    color:#666;
+    border-top:1px solid #eee;
+    background:#fafafa;
+  }
+
+  /* Tooltip fixo */
+  .gantt-tooltip{
+    position:fixed;
+    z-index:3000;
+    display:none;
+    max-width:min(520px, 80vw);
+    background:#111;
+    color:#fff;
+    font-size:12px;
+    line-height:1.25;
+    padding:10px 12px;
+    border-radius:12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    pointer-events:none;
+    white-space:normal;
+  }
+  .gantt-tooltip .tt-title{ font-weight:800; margin-bottom:6px; }
+  .gantt-tooltip .tt-meta{ opacity:.9; }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="logo">
+    <img src="https://www.detran.sp.gov.br/702a783633529610cd8381ac4f5c7b5b.iix" alt="Logo DETRAN-SP">
+  </div>
+
+  <h1>PRaVida — Relatório Executivo</h1>
+  <div class="sub">Painel de acompanhamento das etapas do programa Respeito à Vida.</div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="mi">Manifestação de Interesse</button>
+    <button class="tab" data-tab="pt">Proposta Técnica</button>
+    <button class="tab" data-tab="val">Validação</button>
+  </div>
+
+  <div class="panel active" id="mi">
+    <div class="card">
+      <h2 style="margin:0 0 8px 0; font-size:18px; font-weight:800;">Manifestação de Interesse</h2>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">Municípios</div>
+          <div class="value">213</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Municípios enquadrados</div>
+          <div class="value">172</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Municípios não enquadrados</div>
+          <div class="value">41</div>
+        </div>
+      </div>
+
+      <div style="margin-top:25px">
+        <div>
+          Enquadrados
+          <div class="mi-bar"><div class="mi-fill" id="barOk"></div></div>
+        </div>
+        <div style="margin-top:12px">
+          Não enquadrados
+          <div class="mi-bar"><div class="mi-fill red" id="barNo"></div></div>
+        </div>
+      </div>
+
+      <div class="note">
+        Painel preparado para inclusão das informações detalhadas da etapa de manifestação de interesse.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="pt">
+    <div class="card">
+      <h2 style="margin:0 0 8px 0; font-size:18px; font-weight:800;">Proposta Técnica</h2>
+      <p style="margin:0; color:#555;">
+        Informações dessa etapa serão inseridas após consolidação dos dados.
+      </p>
+    </div>
+  </div>
+
+  <div class="panel" id="val">
+    <div class="card">
+      <h2 style="margin:0 0 8px 0; font-size:18px; font-weight:800;">Cenários para Validação</h2>
+
+      <div class="scenario">
+
+        <!-- Scenario 1 -->
+        <div class="scenario-item" id="sc-c1">
+          <div class="scenario-head" onclick="toggleScenario('c1')" onkeypress="if(event.key==='Enter'){toggleScenario('c1')}" tabindex="0" role="button" aria-expanded="false">
+            <div class="left">
+              <div class="scenario-title">Cenário 1: Desafios na Aprovação de Projetos Municipais</div>
+              <p class="scenario-desc">
+                Atualmente, enfrentamos dificuldade de realizar apontamentos e adequações necessárias para os municípios,
+                podendo resultar em desclassificação e redução do alcance. Há risco de não conseguir assinatura dos convênios
+                antes do período de defeso, considerando análise por AETA/DAL e trâmite na Casa Civil.
+              </p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+
+          <div class="scenario-body" id="body-c1">
+            <div class="section-head">
+              <div class="t">Resumo das ações</div>
+              <div class="m">dias úteis + risco/mitigação</div>
+            </div>
+            <div class="body-inner">
+              <div style="max-height:420px; overflow:auto;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="width:23%">Ação</th>
+                      <th style="width:7%">Início</th>
+                      <th style="width:7%">Fim</th>
+                      <th style="width:7%">Dias úteis</th>
+                      <th style="width:10%">Resp.</th>
+                      <th style="width:23%">Risco</th>
+                      <th style="width:23%">Mitigação</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-c1"></tbody>
+                </table>
+              </div>
+
+              <div class="gantt-wrap">
+                <div class="section-head" style="border-radius:12px; border:1px solid #e6e6e6; margin-top:14px;">
+                  <div class="t">Gantt (linha do tempo)</div>
+                  <div class="m">arraste para ver os meses</div>
+                </div>
+
+                <div class="gantt-legend">
+                  <div class="lg"><span class="sw"></span>Passe o mouse na barra para ver detalhes (sem cortar)</div>
+                </div>
+
+                <div class="gantt">
+                  <div class="gantt-header">
+                    <div class="fixed-col-head">
+                      <span>Etapas</span>
+                      <span class="range" id="rangeLabel-c1">—</span>
+                    </div>
+                    <div class="months-scroll" id="monthsScroll-c1">
+                      <div class="months-row" id="monthsRow-c1"></div>
+                    </div>
+                  </div>
+
+                  <div class="gantt-body">
+                    <div class="fixed-col" id="fixedCol-c1"></div>
+                    <div class="timeline-scroll" id="timelineScroll-c1">
+                      <div class="timeline-inner" id="timelineInner-c1" style="--dayCol:18px; --timelineWidth:1200px;"></div>
+                    </div>
+                  </div>
+
+                  <div class="footnote">
+                    * O Gantt usa <b>dias corridos</b> para posicionamento das barras. “Dias úteis” é exibido conforme informado na tabela.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 2 -->
+        <div class="scenario-item" id="sc-c2" style="margin-top:12px;">
+          <div class="scenario-head" onclick="toggleScenario('c2')" onkeypress="if(event.key==='Enter'){toggleScenario('c2')}" tabindex="0" role="button" aria-expanded="false">
+            <div class="left">
+              <div class="scenario-title">Cenário 2: Oportunidades para Orientação Técnica e Análise dos Projetos Municipais</div>
+              <p class="scenario-desc">
+                Neste cenário, será possível fornecer orientações técnicas aos municípios, permitindo curadoria e análise mais eficazes,
+                incluindo municípios com potencial para corrigir projetos. Convênios poderão ser assinados durante o período de defeso eleitoral,
+                com repasse após vedação, mediante reserva orçamentária e antes do encerramento do exercício.
+                <br><br><b>Obs.:</b> Na manifestação de interesse, há informação de que <b>49 municípios já possuem contrato</b>.
+              </p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+
+          <div class="scenario-body" id="body-c2">
+            <div class="section-head">
+              <div class="t">Resumo das ações</div>
+              <div class="m">dias úteis + risco/mitigação</div>
+            </div>
+            <div class="body-inner">
+              <div style="max-height:420px; overflow:auto;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="width:23%">Ação</th>
+                      <th style="width:7%">Início</th>
+                      <th style="width:7%">Fim</th>
+                      <th style="width:7%">Dias úteis</th>
+                      <th style="width:10%">Resp.</th>
+                      <th style="width:23%">Risco</th>
+                      <th style="width:23%">Mitigação</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-c2"></tbody>
+                </table>
+              </div>
+
+              <div class="gantt-wrap">
+                <div class="section-head" style="border-radius:12px; border:1px solid #e6e6e6; margin-top:14px;">
+                  <div class="t">Gantt (linha do tempo)</div>
+                  <div class="m">arraste para ver os meses</div>
+                </div>
+
+                <div class="gantt-legend">
+                  <div class="lg"><span class="sw"></span>Passe o mouse na barra para ver detalhes (sem cortar)</div>
+                </div>
+
+                <div class="gantt">
+                  <div class="gantt-header">
+                    <div class="fixed-col-head">
+                      <span>Etapas</span>
+                      <span class="range" id="rangeLabel-c2">—</span>
+                    </div>
+                    <div class="months-scroll" id="monthsScroll-c2">
+                      <div class="months-row" id="monthsRow-c2"></div>
+                    </div>
+                  </div>
+
+                  <div class="gantt-body">
+                    <div class="fixed-col" id="fixedCol-c2"></div>
+                    <div class="timeline-scroll" id="timelineScroll-c2">
+                      <div class="timeline-inner" id="timelineInner-c2" style="--dayCol:18px; --timelineWidth:1200px;"></div>
+                    </div>
+                  </div>
+
+                  <div class="footnote">
+                    * O Gantt usa <b>dias corridos</b> para posicionamento das barras. “Dias úteis” é exibido conforme informado na tabela.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario 3 -->
+        <div class="scenario-item" id="sc-c3" style="margin-top:12px;">
+          <div class="scenario-head" onclick="toggleScenario('c3')" onkeypress="if(event.key==='Enter'){toggleScenario('c3')}" tabindex="0" role="button" aria-expanded="false">
+            <div class="left">
+              <div class="scenario-title">Cenário 3: Oportunidades para Orientação Técnica e Análise dos Projetos Municipais</div>
+              <p class="scenario-desc">
+                Neste cenário, será possível fornecer orientações técnicas e curadoria. Os convênios serão assinados em janeiro de 2027,
+                após abertura do exercício financeiro.
+              </p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+
+          <div class="scenario-body" id="body-c3">
+            <div class="section-head">
+              <div class="t">Resumo das ações</div>
+              <div class="m">dias úteis + risco/mitigação</div>
+            </div>
+            <div class="body-inner">
+              <div style="max-height:420px; overflow:auto;">
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="width:23%">Ação</th>
+                      <th style="width:7%">Início</th>
+                      <th style="width:7%">Fim</th>
+                      <th style="width:7%">Dias úteis</th>
+                      <th style="width:10%">Resp.</th>
+                      <th style="width:23%">Risco</th>
+                      <th style="width:23%">Mitigação</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody-c3"></tbody>
+                </table>
+              </div>
+
+              <div class="gantt-wrap">
+                <div class="section-head" style="border-radius:12px; border:1px solid #e6e6e6; margin-top:14px;">
+                  <div class="t">Gantt (linha do tempo)</div>
+                  <div class="m">arraste para ver os meses</div>
+                </div>
+
+                <div class="gantt-legend">
+                  <div class="lg"><span class="sw"></span>Passe o mouse na barra para ver detalhes (sem cortar)</div>
+                </div>
+
+                <div class="gantt">
+                  <div class="gantt-header">
+                    <div class="fixed-col-head">
+                      <span>Etapas</span>
+                      <span class="range" id="rangeLabel-c3">—</span>
+                    </div>
+                    <div class="months-scroll" id="monthsScroll-c3">
+                      <div class="months-row" id="monthsRow-c3"></div>
+                    </div>
+                  </div>
+
+                  <div class="gantt-body">
+                    <div class="fixed-col" id="fixedCol-c3"></div>
+                    <div class="timeline-scroll" id="timelineScroll-c3">
+                      <div class="timeline-inner" id="timelineInner-c3" style="--dayCol:18px; --timelineWidth:1200px;"></div>
+                    </div>
+                  </div>
+
+                  <div class="footnote">
+                    * O Gantt usa <b>dias corridos</b> para posicionamento das barras. “Dias úteis” é exibido conforme informado na tabela.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        
+      <div class="card" style="margin-top:20px;">
+        <h2 style="margin:0 0 10px 0; font-size:18px; font-weight:800;">Perguntas Jurídicas Relevantes</h2>
+
+        <div style="margin-bottom:18px;">
+          <div style="font-weight:700;">1. Qual o termo final seguro para a assinatura de novos convênios antes da incidência das vedações eleitorais?</div>
+          <div style="margin-top:6px; color:#444;">
+            <b>Resposta:</b> O termo final seguro para a formalização e assinatura dos instrumentos jurídicos é o dia 
+            <b>30 de abril de 2026</b>. É imperativo que a assinatura do convênio ocorra até esta data para que o ajuste 
+            se adeque ao preconizado no <b>Parecer CJ/DETRAN nº 69/2026</b> da Procuradoria Geral do Estado – 
+            Consultoria Jurídica do Departamento Estadual de Trânsito (página 9 de 13), bem como ao disposto 
+            no <b>art. 42 da Lei de Responsabilidade Fiscal</b>.
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:700;">2. Qual o termo final seguro para a assinatura de novos convênios antes da incidência das vedações eleitorais?</div>
+          <div style="margin-top:6px; color:#444;">
+            <b>Resposta:</b> O termo final seguro para a formalização e assinatura dos instrumentos jurídicos é o dia 
+            <b>30 de abril de 2026</b>. É imperativo que a assinatura do convênio ocorra até esta data para que o ajuste 
+            se adeque ao preconizado no <b>Parecer CJ/DETRAN nº 69/2026</b> da Procuradoria Geral do Estado – 
+            Consultoria Jurídica do Departamento Estadual de Trânsito (página 9 de 13), bem como ao disposto 
+            no <b>art. 42 da Lei de Responsabilidade Fiscal</b>.
+          </div>
+        </div>
+      </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- tooltip global -->
+<div id="ganttTooltip" class="gantt-tooltip" role="tooltip" aria-hidden="true">
+  <div class="tt-title" id="ttTitle"></div>
+  <div class="tt-meta" id="ttMeta"></div>
+</div>
+
+<script>
+  // Tabs
+  const tabs=document.querySelectorAll(".tab");
+  const panels=document.querySelectorAll(".panel");
+  tabs.forEach(tab=>{
+    tab.addEventListener("click",()=>{
+      tabs.forEach(t=>t.classList.remove("active"));
+      tab.classList.add("active");
+      panels.forEach(p=>p.classList.remove("active"));
+      document.getElementById(tab.dataset.tab).classList.add("active");
+    })
+  });
+
+  // MI bars
+  const total=213, ok=172, no=41;
+  document.getElementById("barOk").style.width=(ok/total*100)+"%";
+  document.getElementById("barNo").style.width=(no/total*100)+"%";
+
+  // Dates
+  const ANO_REF = 2026;
+  const monthMap = { jan:1, fev:2, mar:3, abr:4, mai:5, jun:6, jul:7, ago:8, set:9, out:10, nov:11, dez:12 };
+
+  function parsePtDate(ddmon){
+    if(!ddmon || !ddmon.includes("/")) return null;
+    const parts = ddmon.split("/");
+    if(parts.length === 2){
+      const [dd, mon] = parts;
+      const m = monthMap[(mon||"").toLowerCase()];
+      if(!m) return null;
+      const day = parseInt(dd, 10);
+      if(!day) return null;
+      return new Date(ANO_REF, m-1, day);
+    }
+    if(parts.length === 3){
+      const [dd, mm, yyyy] = parts;
+      const day = parseInt(dd,10), month = parseInt(mm,10), year = parseInt(yyyy,10);
+      if(!day || !month || !year) return null;
+      return new Date(year, month-1, day);
+    }
+    return null;
+  }
+  function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
+  function diffDays(d1,d2){ return Math.round((d2-d1)/(1000*60*60*24)); }
+  function daysInclusive(d1, d2){
+    if(!d1 || !d2) return "";
+    const ms = (d2 - d1);
+    const days = Math.floor(ms / (1000*60*60*24)) + 1;
+    return days >= 1 ? String(days) : "";
+  }
+  function fmtRange(d){
+    if(!d) return "—";
+    const dd = String(d.getDate()).padStart(2,"0");
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    return `${dd}/${mm}/${d.getFullYear()}`;
+  }
+
+  // Data (mesmos dados do painel anterior)
+  const tasksC1 = [
+    {acao:"Triagem final das propostas técnicas",inicio:"02/mar",fim:"06/mar",diasUteis:"",resp:"DSV-CIST",
+      risco:"Inconsistência documental básica reduzindo o volume de municípios viáveis para análise técnica",
+      mitigacao:"Checklist e avaliação de conteúdo de ao menos uma proposta por município"},
+    {acao:"Análise das propostas técnicas",inicio:"09/mar",fim:"20/mar",diasUteis:"",resp:"DSV-CIST + DFT",
+      risco:"R1: Não ter tempo do município sanar as pendências de antigos programas. R2: A análise técnica exige alinhamento do time de revisores e disponibilidade de equipe da DFT",
+      mitigacao:"M1: Manter a comunicação do município e manter a DAL informada. M2: A avaliação conjunta, no início, promove melhor alinhamento dos procedimentos"},
+    {acao:"Devolução da proposta revisada pelo município",inicio:"20/mar",fim:"27/mar",diasUteis:"",resp:"DSV-CIST + DFT",
+      risco:"Não ter tempo para mais ajustes após devolutiva",
+      mitigacao:"Avaliar cenário 2, considerando ampliação do prazo"},
+    {acao:"Análise final da equipe técnica",inicio:"30/mar",fim:"06/abr",diasUteis:"",resp:"DSV-CIST + DFT",
+      risco:"Propostas estarem frágeis para formalização de um convênio",
+      mitigacao:"Avaliar cenário 2, considerando ampliação do prazo"},
+    {acao:"Envio da lista para AETA e Casa Civil",inicio:"07/abr",fim:"08/abr",diasUteis:"",resp:"DSV-CIST + DFT",
+      risco:"Desalinhamento de formato encaminhado e celeridade na tramitação",
+      mitigacao:"Reuniões para alinhamento entre as áreas"},
+    {acao:"Assinatura na Casa Civil",inicio:"08/abr",fim:"10/abr",diasUteis:"",resp:"AETA",
+      risco:"Não ser assinada rapidamente, ocasionando estreitamento do cronograma",
+      mitigacao:"Articulação com o Gabinete do Detran e apoio do Sistran na manutenção da comunicação com a Casa Civil"},
+    {acao:"Devolução da Casa Civil",inicio:"13/abr",fim:"14/abr",diasUteis:"",resp:"AETA",
+      risco:"Não agilização/priorização do devido encaminhamento",
+      mitigacao:"Manter acompanhamento do processo e contato constante com a AETA"},
+    {acao:"Publicação da lista de classificados",inicio:"15/abr",fim:"15/abr",diasUteis:"",resp:"DSV-CIST",
+      risco:"Lista não estar completa ou conter erros (falta de municípios/municípios com enquadramento equivocado)",
+      mitigacao:"Correção dupla (por pares) diminuindo eventuais equívocos nesta importante fase"},
+    {acao:"Montagem do processo SEI",inicio:"16/abr",fim:"16/abr",diasUteis:"",resp:"DSV-CIST",
+      risco:"R1: CSM não “devolver” ao SEI a documentação correta (quantidade, qualidade). R2: Complexidade da documentação gerando ausências/padronização inadequada",
+      mitigacao:"M1: Avaliar com a área técnica o passo a passo mantendo uma pessoa da CIST envolvida. M2: Manter 1–2 pessoas da CIST dedicadas à validação/check da documentação"},
+    {acao:"Envio para DAL",inicio:"17/abr",fim:"17/abr",diasUteis:"",resp:"DSV",
+      risco:"Inconsistência documental na montagem dos processos",
+      mitigacao:"Automação de instrução do processo SEI, junto à DTI para importação das informações, com base em orientação da DAL"},
+    {acao:"Análise DAL e envio para CJ",inicio:"22/abr",fim:"27/abr",diasUteis:"",resp:"DAL",
+      risco:"Não cumprimento de prazos",
+      mitigacao:"Alinhamento com as áreas para entender gargalos, com construção e análise conjunta"},
+    {acao:"Emissão de parecer referencial (CJ)",inicio:"27/abr",fim:"30/abr",diasUteis:"",resp:"Consultoria Jurídica",
+      risco:"R1: Parecer com elementos novos. R2: Gargalo jurídico na análise de grande volume de processos",
+      mitigacao:"M1: Manter diálogo e alinhamento com a CJ. M2: Antecipar universo de municípios aptos, avaliando pendências anteriores"},
+    {acao:"Montagem dos processos e envio para convênios",inicio:"27/abr",fim:"08/mai",diasUteis:"",resp:"DSV-CIST",
+      risco:"Ausência de documentação mínima para início do processo junto ao SEI",
+      mitigacao:"Pessoa da CIST dedicada à operação desta etapa + validação da Coordenadora e Coordenação Geral"},
+    {acao:"Análise convênios e reserva orçamentária",inicio:"08/mai",fim:"29/mai",diasUteis:"",resp:"DAL",
+      risco:"Município com pendências no momento da assinatura dificultando/impedindo assinatura a tempo",
+      mitigacao:"Lista de pendências via DAL + verificação pela CIST + comunicação aos municípios"},
+    {acao:"Análise AETA para assinatura do presidente",inicio:"01/jun",fim:"12/jun",diasUteis:"",resp:"DAL",
+      risco:"Perda de prazo limite de formalização",
+      mitigacao:"Alinhamento com as áreas para entender os gargalos"},
+    {acao:"Envio para assinatura do município",inicio:"15/jun",fim:"19/jun",diasUteis:"",resp:"DAL",
+      risco:"Falta de contratos ativos para emissão de ordem de serviço a tempo",
+      mitigacao:"Listagem prévia de municípios que afirmam ter contratos ativos como critério de priorização"},
+    {acao:"Repasse após defeso",inicio:"",fim:"",diasUteis:"",resp:"DAL",risco:"",mitigacao:""}
+  ];
+
+  const tasksC2 = [
+    {acao:"TRIAGEM FINAL DAS PROPOSTAS TÉCNICAS ENVIADAS",inicio:"02/mar",fim:"06/mar",diasUteis:"",resp:"DSV-CIST",
+      risco:"Não termos a confirmação de quais são as pendências de convênios anteriores para o município sanar e ter que desclassificá-lo por isso.",
+      mitigacao:""},
+    {acao:"ANÁLISE DAS PROPOSTAS TÉCNICAS",inicio:"09/mar",fim:"02/abr",diasUteis:"",resp:"DSV-CIST + DFT",risco:"",mitigacao:""},
+    {acao:"CICLOS DE REVISÕES TÉCNICAS",inicio:"",fim:"",diasUteis:"",resp:"DSV-CIST + DFT",risco:"",mitigacao:""},
+    {acao:"CURSO DE FORMAÇÃO EM DESENHO DE VIAS E FISCALIZAÇÃO",inicio:"",fim:"",diasUteis:"",resp:"DSV + DFT",risco:"",mitigacao:""},
+    {acao:"MENTORIAS",inicio:"",fim:"",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ANÁLISE TÉCNICA FINAL",inicio:"",fim:"31/jul",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ENVIO DA LISTA PARA A AETA PARA ASSINATURA DO PRESIDENTE E ENVIO À CASA CIVIL",inicio:"03/ago",fim:"10/ago",diasUteis:"5",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ASSINATURA NA CASA CIVIL",inicio:"11/ago",fim:"31/ago",diasUteis:"14",resp:"AETA",risco:"",mitigacao:""},
+    {acao:"DEVOLUÇÃO DA CASA CIVIL",inicio:"01/set",fim:"02/set",diasUteis:"2",resp:"AETA",risco:"",mitigacao:""},
+    {acao:"PUBLICAÇÃO DA LISTA DE CLASSIFICADOS",inicio:"07/set",fim:"08/set",diasUteis:"1",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"MONTAGEM DO PROCESSO SEI PARA APROVAÇÃO DO PARECER REFERENCIAL",inicio:"07/set",fim:"10/set",diasUteis:"3",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ENVIO PARA DAL",inicio:"10/set",fim:"11/set",diasUteis:"1",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ANÁLISE E ENVIO DAL PARA A CJ",inicio:"11/set",fim:"18/set",diasUteis:"5",resp:"DAL",risco:"",mitigacao:""},
+    {acao:"EMISSÃO DE PARECER REFERENCIAL PELA CJ",inicio:"18/set",fim:"25/set",diasUteis:"5",resp:"CONSULTORIA JURÍDICA",risco:"",mitigacao:""},
+    {acao:"MONTAGEM DE TODOS OS PROCESSOS E ENVIO PARA CONVÊNIOS",inicio:"25/set",fim:"16/out",diasUteis:"15",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ANÁLISE CONVÊNIOS E RESERVA ORÇAMENTÁRIA",inicio:"30/set",fim:"30/out",diasUteis:"22",resp:"DAL",risco:"",mitigacao:""},
+    {acao:"INÍCIO DE ENVIO PARA ANÁLISE AETA E ASSINATURA DA PRESIDÊNCIA",inicio:"07/out",fim:"14/out",diasUteis:"6",resp:"DAL",risco:"",mitigacao:""},
+    {acao:"ASSINATURA PRESIDENTE",inicio:"14/out",fim:"20/out",diasUteis:"5",resp:"AETA",risco:"",mitigacao:""},
+    {acao:"INÍCIO DE REPASSE FINANCEIRO",inicio:"02/nov",fim:"04/dez",diasUteis:"",resp:"DAL",
+      risco:"Fechamento do exercício financeiro antecipado em novembro.",
+      mitigacao:""}
+  ];
+
+  const tasksC3 = [
+    {acao:"TRIAGEM FINAL DAS PROPOSTAS TÉCNICAS ENVIADAS",inicio:"02/mar",fim:"06/mar",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ANÁLISE DAS PROPOSTAS TÉCNICAS",inicio:"09/mar",fim:"02/abr",diasUteis:"",resp:"DSV-CIST + DFT",risco:"",mitigacao:""},
+    {acao:"CICLOS DE REVISÕES TÉCNICAS",inicio:"",fim:"",diasUteis:"",resp:"DSV-CIST + DFT",risco:"",mitigacao:""},
+    {acao:"CURSO DE FORMAÇÃO EM DESENHO DE VIAS E FISCALIZAÇÃO",inicio:"",fim:"",diasUteis:"",resp:"DSV + DFT",risco:"",mitigacao:""},
+    {acao:"MENTORIAS",inicio:"",fim:"",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ANÁLISE TÉCNICA FINAL",inicio:"",fim:"31/jul",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ENVIO DA LISTA PARA A AETA PARA ASSINATURA DO PRESIDENTE E ENVIO À CASA CIVIL",inicio:"03/ago",fim:"10/ago",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ASSINATURA NA CASA CIVIL",inicio:"11/ago",fim:"31/ago",diasUteis:"",resp:"AETA",risco:"",mitigacao:""},
+    {acao:"DEVOLUÇÃO DA CASA CIVIL",inicio:"01/set",fim:"02/set",diasUteis:"",resp:"AETA",risco:"",mitigacao:""},
+    {acao:"PUBLICAÇÃO DA LISTA DE CLASSIFICADOS",inicio:"07/set",fim:"08/set",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"MONTAGEM DO PROCESSO SEI PARA APROVAÇÃO DO PARECER REFERENCIAL",inicio:"07/set",fim:"10/set",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ENVIO PARA DAL",inicio:"10/set",fim:"11/set",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ENVIO PARA A CJ",inicio:"11/set",fim:"18/set",diasUteis:"",resp:"DAL",risco:"",mitigacao:""},
+    {acao:"EMISSÃO DE PARECER REFERENCIAL PELA CJ",inicio:"18/set",fim:"25/set",diasUteis:"",resp:"CONSULTORIA JURIDICA",risco:"",mitigacao:""},
+    {acao:"MONTAGEM DE TODOS OS PROCESSOS E ENVIO PARA CONVÊNIOS",inicio:"25/set",fim:"16/out",diasUteis:"",resp:"DSV-CIST",risco:"",mitigacao:""},
+    {acao:"ANÁLISE E RESERVA ORÇAMENTÁRIA",inicio:"14/out",fim:"30/out",diasUteis:"",resp:"DAL",risco:"",mitigacao:""},
+    {acao:"ENVIO PARA ASSINATURA DA PRESIDÊNCIA",inicio:"",fim:"30/01/2027",diasUteis:"",resp:"DAL",risco:"",mitigacao:""}
+  ];
+
+  const scenarios = { c1: tasksC1, c2: tasksC2, c3: tasksC3 };
+
+  // Tooltip global
+  const tooltip = document.getElementById("ganttTooltip");
+  const ttTitle = document.getElementById("ttTitle");
+  const ttMeta = document.getElementById("ttMeta");
+
+  function showTooltip(title, meta, x, y){
+    ttTitle.textContent = title || "";
+    ttMeta.textContent = meta || "";
+    tooltip.style.display = "block";
+    tooltip.setAttribute("aria-hidden","false");
+    moveTooltip(x, y);
+  }
+  function moveTooltip(x, y){
+    const pad = 14;
+    const w = tooltip.offsetWidth || 320;
+    const h = tooltip.offsetHeight || 60;
+    let left = x + pad;
+    let top = y + pad;
+    if(left + w + pad > window.innerWidth) left = x - w - pad;
+    if(top + h + pad > window.innerHeight) top = y - h - pad;
+    tooltip.style.left = left + "px";
+    tooltip.style.top = top + "px";
+  }
+  function hideTooltip(){
+    tooltip.style.display = "none";
+    tooltip.setAttribute("aria-hidden","true");
+  }
+
+  function bindTooltipToBars(root){
+    root.querySelectorAll(".gbar").forEach(bar=>{
+      bar.addEventListener("mouseenter",(e)=>{
+        showTooltip(bar.dataset.title || "Ação", bar.dataset.tip || "", e.clientX, e.clientY);
+      });
+      bar.addEventListener("mousemove",(e)=>{
+        if(tooltip.style.display==="block") moveTooltip(e.clientX, e.clientY);
+      });
+      bar.addEventListener("mouseleave",()=>hideTooltip());
+    });
+  }
+
+  // Builders (in container by key)
+  function buildTabela(key, tasks){
+    const tbody = document.getElementById("tbody-"+key);
+    tbody.innerHTML = "";
+    tasks.forEach(t=>{
+      const tr = document.createElement("tr");
+
+      const tdA = document.createElement("td"); tdA.textContent = t.acao || "-";
+      const tdI = document.createElement("td"); tdI.className="mono td-small"; tdI.textContent = t.inicio || "-";
+      const tdF = document.createElement("td"); tdF.className="mono td-small"; tdF.textContent = t.fim || "-";
+      const tdDU= document.createElement("td"); tdDU.className="mono td-small"; tdDU.textContent = (t.diasUteis && String(t.diasUteis).trim()) ? t.diasUteis : "-";
+
+      const tdR = document.createElement("td");
+      const span = document.createElement("span");
+      span.className="badge-resp"; span.textContent = t.resp || "-";
+      tdR.appendChild(span);
+
+      const tdRisk = document.createElement("td"); tdRisk.textContent = t.risco || "";
+      const tdMit  = document.createElement("td"); tdMit.textContent  = t.mitigacao || "";
+
+      tr.appendChild(tdA); tr.appendChild(tdI); tr.appendChild(tdF); tr.appendChild(tdDU);
+      tr.appendChild(tdR); tr.appendChild(tdRisk); tr.appendChild(tdMit);
+      tbody.appendChild(tr);
+    });
+  }
+
+  function getMinMax(tasks){
+    let min=null, max=null;
+    tasks.forEach(t=>{
+      const di=parsePtDate(t.inicio);
+      const df=parsePtDate(t.fim);
+      if(di && (!min || di<min)) min=di;
+      if(df && (!max || df>max)) max=df;
+    });
+    return {min,max};
+  }
+
+  function buildMonthsRow(key, min, max){
+    const monthsRow = document.getElementById("monthsRow-"+key);
+    monthsRow.innerHTML="";
+
+    const start=new Date(min.getFullYear(), min.getMonth(), 1);
+    const end=new Date(max.getFullYear(), max.getMonth()+1, 1);
+
+    const totalDays=diffDays(min,max)+1;
+    const dayCol=18;
+    const timelineWidth = (totalDays * dayCol);
+
+    const inner=document.getElementById("timelineInner-"+key);
+    inner.style.setProperty("--dayCol", dayCol+"px");
+    inner.style.setProperty("--timelineWidth", timelineWidth+"px");
+
+    monthsRow.style.width = timelineWidth + "px";
+
+    let cur=new Date(start);
+    while(cur<end){
+      const mStart=new Date(cur.getFullYear(), cur.getMonth(), 1);
+      const mEnd=new Date(cur.getFullYear(), cur.getMonth()+1, 1);
+
+      const segStart=(mStart<min)?min:mStart;
+      const segEndExclusive=(mEnd>addDays(max,1))?addDays(max,1):mEnd;
+
+      const segDays=diffDays(segStart, segEndExclusive);
+
+      if(segDays>0){
+        const div=document.createElement("div");
+        div.className="month";
+        div.style.width=(segDays*dayCol)+"px";
+        const nomes=["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+        div.textContent=`${nomes[cur.getMonth()]} ${cur.getFullYear()}`;
+        monthsRow.appendChild(div);
+      }
+      cur=mEnd;
+    }
+
+    document.getElementById("rangeLabel-"+key).textContent = `${fmtRange(min)} → ${fmtRange(max)}`;
+  }
+
+  function buildGantt(key, tasks){
+    const {min,max}=getMinMax(tasks);
+    const fixedCol=document.getElementById("fixedCol-"+key);
+    const timelineInner=document.getElementById("timelineInner-"+key);
+    fixedCol.innerHTML="";
+    timelineInner.innerHTML="";
+    hideTooltip();
+
+    if(!min || !max){
+      tasks.forEach(t=>{
+        const fr=document.createElement("div");
+        fr.className="fixed-row";
+        fr.title=t.acao || "";
+        fr.textContent=t.acao || "-";
+        fixedCol.appendChild(fr);
+
+        const tr=document.createElement("div");
+        tr.className="trow";
+        const hint=document.createElement("div");
+        hint.style.position="absolute";
+        hint.style.left="8px";
+        hint.style.top="50%";
+        hint.style.transform="translateY(-50%)";
+        hint.style.fontSize="12px";
+        hint.style.color="#777";
+        hint.textContent="A definir";
+        tr.appendChild(hint);
+        timelineInner.appendChild(tr);
+      });
+      document.getElementById("monthsRow-"+key).innerHTML="";
+      document.getElementById("monthsRow-"+key).style.width="0px";
+      document.getElementById("rangeLabel-"+key).textContent="—";
+      return;
+    }
+
+    buildMonthsRow(key, min, max);
+
+    const dayCol=18;
+
+    tasks.forEach((t)=>{
+      const fr=document.createElement("div");
+      fr.className="fixed-row";
+      fr.title=t.acao || "";
+      fr.textContent=t.acao || "-";
+      fixedCol.appendChild(fr);
+
+      const tr=document.createElement("div");
+      tr.className="trow";
+
+      const di=parsePtDate(t.inicio);
+      const df=parsePtDate(t.fim);
+
+      if(di && df){
+        const startOffset=diffDays(min, di);
+        const dur=diffDays(di, df)+1;
+
+        const bar=document.createElement("div");
+        bar.className="gbar"+(dur<=2?" small":"");
+        bar.style.left=(startOffset*dayCol)+"px";
+        bar.style.width=Math.max(8, dur*dayCol)+"px";
+
+        const diasCorridos = daysInclusive(di, df);
+        const diasUteis = (t.diasUteis && String(t.diasUteis).trim()) ? t.diasUteis : "-";
+
+        bar.dataset.title = t.acao || "Ação";
+        bar.dataset.tip = `${t.inicio} → ${t.fim} • ${diasCorridos} dia(s) corridos • ${diasUteis} dia(s) úteis • ${t.resp || "-"}`;
+        tr.appendChild(bar);
+      } else if (di && !df){
+        const startOffset=diffDays(min, di);
+        const bar=document.createElement("div");
+        bar.className="gbar small";
+        bar.style.left=(startOffset*dayCol)+"px";
+        bar.style.width=(1*dayCol)+"px";
+        bar.dataset.title = t.acao || "Ação";
+        bar.dataset.tip = `${t.inicio} → (a definir) • ${t.resp || "-"}`;
+        tr.appendChild(bar);
+      } else if (!di && df){
+        const endOffset=diffDays(min, df);
+        const bar=document.createElement("div");
+        bar.className="gbar small";
+        bar.style.left=(endOffset*dayCol)+"px";
+        bar.style.width=(1*dayCol)+"px";
+        bar.dataset.title = t.acao || "Ação";
+        bar.dataset.tip = `(a definir) → ${t.fim} • ${t.resp || "-"}`;
+        tr.appendChild(bar);
+      } else {
+        const hint=document.createElement("div");
+        hint.style.position="absolute";
+        hint.style.left="8px";
+        hint.style.top="50%";
+        hint.style.transform="translateY(-50%)";
+        hint.style.fontSize="12px";
+        hint.style.color="#777";
+        hint.textContent="A definir";
+        tr.appendChild(hint);
+      }
+
+      timelineInner.appendChild(tr);
+    });
+
+    const monthsScroll=document.getElementById("monthsScroll-"+key);
+    const timelineScroll=document.getElementById("timelineScroll-"+key);
+    timelineScroll.onscroll=()=>{ monthsScroll.scrollLeft = timelineScroll.scrollLeft; };
+    monthsScroll.onscroll=()=>{ timelineScroll.scrollLeft = monthsScroll.scrollLeft; };
+
+    bindTooltipToBars(document.getElementById("body-"+key));
+  }
+
+  const rendered = { c1:false, c2:false, c3:false };
+
+  function toggleScenario(key){
+    const item = document.getElementById("sc-"+key);
+    const isOpen = item.classList.contains("open");
+
+    // fecha todos
+    ["c1","c2","c3"].forEach(k=>{
+      const it = document.getElementById("sc-"+k);
+      it.classList.remove("open");
+      it.querySelector(".scenario-head").setAttribute("aria-expanded","false");
+    });
+    hideTooltip();
+
+    if(!isOpen){
+      item.classList.add("open");
+      item.querySelector(".scenario-head").setAttribute("aria-expanded","true");
+
+      if(!rendered[key]){
+        buildTabela(key, scenarios[key]);
+        buildGantt(key, scenarios[key]);
+        rendered[key]=true;
+      } else {
+        // re-sync scrolls (evita ficar travado depois de colapsar)
+        const monthsScroll=document.getElementById("monthsScroll-"+key);
+        const timelineScroll=document.getElementById("timelineScroll-"+key);
+        timelineScroll.scrollLeft = monthsScroll.scrollLeft;
+      }
+
+      // rola suavemente até o início do dropdown
+      setTimeout(()=> item.scrollIntoView({behavior:"smooth", block:"start"}), 80);
+    }
+  }
+
+  // opcional: abre o primeiro cenário por padrão
+  // toggleScenario('c1');
+</script>
+</body>
+</html>
