@@ -697,13 +697,16 @@
       document.getElementById(tab.dataset.tab).classList.add("active");
     })
   });
-
-  // MI bars
+  // MI bars (opcional)
+  // OBS: Em algumas versões do relatório, os elementos #barOk e #barNo podem não existir.
+  // Para evitar que um erro de JavaScript quebre o restante da página (tabs/accordion),
+  // fazemos a checagem antes de aplicar o width.
   const total=213, ok=172, no=41;
-  document.getElementById("barOk").style.width=(ok/total*100)+"%";
-  document.getElementById("barNo").style.width=(no/total*100)+"%";
-
-  // Dates
+  const barOkEl = document.getElementById("barOk");
+  const barNoEl = document.getElementById("barNo");
+  if(barOkEl) barOkEl.style.width=(ok/total*100)+"%";
+  if(barNoEl) barNoEl.style.width=(no/total*100)+"%";
+// Dates
   const ANO_REF = 2026;
   const monthMap = { jan:1, fev:2, mar:3, abr:4, mai:5, jun:6, jul:7, ago:8, set:9, out:10, nov:11, dez:12 };
 
