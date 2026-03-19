@@ -302,7 +302,7 @@
   <div class="tabs">
     <button class="tab active" data-tab="mi">Manifestação de Interesse</button>
     <button class="tab" data-tab="pt">Proposta Técnica</button>
-    <button class="tab" data-tab="val">Validação</button>
+    <button class="tab" data-tab="val">Cronograma</button>
   </div>
 
   <div class="panel active" id="mi">
@@ -469,268 +469,116 @@
   </div>
 
 
-  <div class="panel" id="val">
-    <div class="card">
-      <h2 style="margin:0 0 8px 0; font-size:18px; font-weight:800;">Cenários para Validação</h2>
+ 
+<div class="panel" id="val">
+  <div class="card">
+    <h2 style="margin:0 0 15px 0; font-size:18px; font-weight:800;">Cronograma 2026</h2>
 
-      <div class="scenario">
-
-        <!-- Scenario 1 -->
-        <div class="scenario-item" id="sc-c1">
-          <div class="scenario-head" onclick="toggleScenario('c1')" onkeypress="if(event.key==='Enter'){toggleScenario('c1')}" tabindex="0" role="button" aria-expanded="false">
-            <div class="left">
-              <div class="scenario-title">Cenário 1: Desafios na Aprovação de Projetos Municipais</div>
-              <p class="scenario-desc">
-                Atualmente, enfrentamos dificuldade de realizar apontamentos e adequações necessárias para os municípios,
-                podendo resultar em desclassificação e redução do alcance. Há risco de não conseguir assinatura dos convênios
-                antes do período de defeso, considerando análise por AETA/DAL e trâmite na Casa Civil.
-              </p>
-            </div>
-            <div class="chev">⌄</div>
-          </div>
-
-          <div class="scenario-body" id="body-c1">
-            <div class="section-head">
-              <div class="t">Resumo das ações</div>
-              <div class="m">dias úteis + risco/mitigação</div>
-            </div>
-            <div class="body-inner">
-              <div style="max-height:420px; overflow:auto;">
-                <table>
-                  <thead>
-                    <tr>
-                      <th style="width:23%">Ação</th>
-                      <th style="width:7%">Início</th>
-                      <th style="width:7%">Fim</th>
-                      <th style="width:7%">Dias úteis</th>
-                      <th style="width:10%">Resp.</th>
-                      <th style="width:23%">Risco</th>
-                      <th style="width:23%">Mitigação</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tbody-c1"></tbody>
-                </table>
-              </div>
-
-              <div class="gantt-wrap">
-                <div class="section-head" style="border-radius:12px; border:1px solid #e6e6e6; margin-top:14px;">
-                  <div class="t">Gantt (linha do tempo)</div>
-                  <div class="m">arraste para ver os meses</div>
-                </div>
-
-                <div class="gantt-legend">
-                  <div class="lg"><span class="sw"></span>Passe o mouse na barra para ver detalhes (sem cortar)</div>
-                </div>
-
-                <div class="gantt">
-                  <div class="gantt-header">
-                    <div class="fixed-col-head">
-                      <span>Etapas</span>
-                      <span class="range" id="rangeLabel-c1">—</span>
-                    </div>
-                    <div class="months-scroll" id="monthsScroll-c1">
-                      <div class="months-row" id="monthsRow-c1"></div>
-                    </div>
-                  </div>
-
-                  <div class="gantt-body">
-                    <div class="fixed-col" id="fixedCol-c1"></div>
-                    <div class="timeline-scroll" id="timelineScroll-c1">
-                      <div class="timeline-inner" id="timelineInner-c1" style="--dayCol:18px; --timelineWidth:1200px;"></div>
-                    </div>
-                  </div>
-
-                  <div class="footnote">
-                    * O Gantt usa <b>dias corridos</b> para posicionamento das barras. “Dias úteis” é exibido conforme informado na tabela.
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Janeiro</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">31</div>
         </div>
-
-        <!-- Scenario 2 -->
-        <div class="scenario-item" id="sc-c2" style="margin-top:12px;">
-          <div class="scenario-head" onclick="toggleScenario('c2')" onkeypress="if(event.key==='Enter'){toggleScenario('c2')}" tabindex="0" role="button" aria-expanded="false">
-            <div class="left">
-              <div class="scenario-title">Cenário 2: Oportunidades para Orientação Técnica e Análise dos Projetos Municipais</div>
-              <p class="scenario-desc">
-                Neste cenário, será possível fornecer orientações técnicas aos municípios, permitindo curadoria e análise mais eficazes,
-                incluindo municípios com potencial para corrigir projetos. Convênios poderão ser assinados durante o período de defeso eleitoral,
-                com repasse após vedação, mediante reserva orçamentária e antes do encerramento do exercício.
-                <br><br><b>Obs.:</b> Na manifestação de interesse, há informação de que <b>49 municípios já possuem contrato</b>.
-              </p>
-            </div>
-            <div class="chev">⌄</div>
-          </div>
-
-          <div class="scenario-body" id="body-c2">
-            <div class="section-head">
-              <div class="t">Resumo das ações</div>
-              <div class="m">dias úteis + risco/mitigação</div>
-            </div>
-            <div class="body-inner">
-              <div style="max-height:420px; overflow:auto;">
-                <table>
-                  <thead>
-                    <tr>
-                      <th style="width:23%">Ação</th>
-                      <th style="width:7%">Início</th>
-                      <th style="width:7%">Fim</th>
-                      <th style="width:7%">Dias úteis</th>
-                      <th style="width:10%">Resp.</th>
-                      <th style="width:23%">Risco</th>
-                      <th style="width:23%">Mitigação</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tbody-c2"></tbody>
-                </table>
-              </div>
-
-              <div class="gantt-wrap">
-                <div class="section-head" style="border-radius:12px; border:1px solid #e6e6e6; margin-top:14px;">
-                  <div class="t">Gantt (linha do tempo)</div>
-                  <div class="m">arraste para ver os meses</div>
-                </div>
-
-                <div class="gantt-legend">
-                  <div class="lg"><span class="sw"></span>Passe o mouse na barra para ver detalhes (sem cortar)</div>
-                </div>
-
-                <div class="gantt">
-                  <div class="gantt-header">
-                    <div class="fixed-col-head">
-                      <span>Etapas</span>
-                      <span class="range" id="rangeLabel-c2">—</span>
-                    </div>
-                    <div class="months-scroll" id="monthsScroll-c2">
-                      <div class="months-row" id="monthsRow-c2"></div>
-                    </div>
-                  </div>
-
-                  <div class="gantt-body">
-                    <div class="fixed-col" id="fixedCol-c2"></div>
-                    <div class="timeline-scroll" id="timelineScroll-c2">
-                      <div class="timeline-inner" id="timelineInner-c2" style="--dayCol:18px; --timelineWidth:1200px;"></div>
-                    </div>
-                  </div>
-
-                  <div class="footnote">
-                    * O Gantt usa <b>dias corridos</b> para posicionamento das barras. “Dias úteis” é exibido conforme informado na tabela.
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Scenario 3 -->
-        <div class="scenario-item" id="sc-c3" style="margin-top:12px;">
-          <div class="scenario-head" onclick="toggleScenario('c3')" onkeypress="if(event.key==='Enter'){toggleScenario('c3')}" tabindex="0" role="button" aria-expanded="false">
-            <div class="left">
-              <div class="scenario-title">Cenário 3: Oportunidades para Orientação Técnica e Análise dos Projetos Municipais</div>
-              <p class="scenario-desc">
-                Neste cenário, será possível fornecer orientações técnicas e curadoria. Os convênios serão assinados em janeiro de 2027,
-                após abertura do exercício financeiro.
-              </p>
-            </div>
-            <div class="chev">⌄</div>
-          </div>
-
-          <div class="scenario-body" id="body-c3">
-            <div class="section-head">
-              <div class="t">Resumo das ações</div>
-              <div class="m">dias úteis + risco/mitigação</div>
-            </div>
-            <div class="body-inner">
-              <div style="max-height:420px; overflow:auto;">
-                <table>
-                  <thead>
-                    <tr>
-                      <th style="width:23%">Ação</th>
-                      <th style="width:7%">Início</th>
-                      <th style="width:7%">Fim</th>
-                      <th style="width:7%">Dias úteis</th>
-                      <th style="width:10%">Resp.</th>
-                      <th style="width:23%">Risco</th>
-                      <th style="width:23%">Mitigação</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tbody-c3"></tbody>
-                </table>
-              </div>
-
-              <div class="gantt-wrap">
-                <div class="section-head" style="border-radius:12px; border:1px solid #e6e6e6; margin-top:14px;">
-                  <div class="t">Gantt (linha do tempo)</div>
-                  <div class="m">arraste para ver os meses</div>
-                </div>
-
-                <div class="gantt-legend">
-                  <div class="lg"><span class="sw"></span>Passe o mouse na barra para ver detalhes (sem cortar)</div>
-                </div>
-
-                <div class="gantt">
-                  <div class="gantt-header">
-                    <div class="fixed-col-head">
-                      <span>Etapas</span>
-                      <span class="range" id="rangeLabel-c3">—</span>
-                    </div>
-                    <div class="months-scroll" id="monthsScroll-c3">
-                      <div class="months-row" id="monthsRow-c3"></div>
-                    </div>
-                  </div>
-
-                  <div class="gantt-body">
-                    <div class="fixed-col" id="fixedCol-c3"></div>
-                    <div class="timeline-scroll" id="timelineScroll-c3">
-                      <div class="timeline-inner" id="timelineInner-c3" style="--dayCol:18px; --timelineWidth:1200px;"></div>
-                    </div>
-                  </div>
-
-                  <div class="footnote">
-                    * O Gantt usa <b>dias corridos</b> para posicionamento das barras. “Dias úteis” é exibido conforme informado na tabela.
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        
-      <div class="card" style="margin-top:20px;">
-        <h2 style="margin:0 0 10px 0; font-size:18px; font-weight:800;">Perguntas Jurídicas Relevantes</h2>
-
-        <div style="margin-bottom:18px;">
-          <div style="font-weight:700;">1. Qual o termo final seguro para a assinatura de novos convênios antes da incidência das vedações eleitorais?</div>
-          <div style="margin-top:6px; color:#444;">
-            <b>Resposta:</b> O termo final seguro para a formalização e assinatura dos instrumentos jurídicos é o dia 
-            <b>30 de abril de 2026</b>. É imperativo que a assinatura do convênio ocorra até esta data para que o ajuste 
-            se adeque ao preconizado no <b>Parecer CJ/DETRAN nº 69/2026</b> da Procuradoria Geral do Estado – 
-            Consultoria Jurídica do Departamento Estadual de Trânsito (página 9 de 13), bem como ao disposto 
-            no <b>art. 42 da Lei de Responsabilidade Fiscal</b>.
-          </div>
-        </div>
-
-        <div>
-          <div style="font-weight:700;">2. Qual o termo final seguro para a assinatura de novos convênios antes da incidência das vedações eleitorais?</div>
-          <div style="margin-top:6px; color:#444;">
-            <b>Resposta:</b> O termo final seguro para a formalização e assinatura dos instrumentos jurídicos é o dia 
-            <b>30 de abril de 2026</b>. É imperativo que a assinatura do convênio ocorra até esta data para que o ajuste 
-            se adeque ao preconizado no <b>Parecer CJ/DETRAN nº 69/2026</b> da Procuradoria Geral do Estado – 
-            Consultoria Jurídica do Departamento Estadual de Trânsito (página 9 de 13), bem como ao disposto 
-            no <b>art. 42 da Lei de Responsabilidade Fiscal</b>.
-          </div>
-        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">&nbsp;</div>
       </div>
-</div>
 
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Fevereiro</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">&nbsp;</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Março</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">31</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">• Início da análise técnica (09/03)</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Abril</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">• Envio à Casa Civil (07/04)<br>• Publicação da lista (15/04)</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Maio</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">31</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">• Reserva orçamentária</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Junho</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">• Assinatura com municípios</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Julho</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">31</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">&nbsp;</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Agosto</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">31</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">• Envio para Casa Civil</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Setembro</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">&nbsp;</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Outubro</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">31</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">• Assinaturas finais</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Novembro</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#dbeafe;font-weight:800;color:#1d4ed8;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">• Início do repasse</div>
+      </div>
+
+      <div style="border:1px solid #e6e6e6;border-radius:12px;padding:10px;background:#fff;">
+        <div style="font-weight:800;font-size:13px;margin-bottom:6px;">Dezembro</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-size:10px;">
+          <div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">1</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">2</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">3</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">4</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">5</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">6</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">7</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">8</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">9</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">10</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">11</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">12</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">13</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">14</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">15</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">16</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">17</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">18</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">19</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">20</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">21</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">22</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">23</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">24</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">25</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">26</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">27</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">28</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">29</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">30</div><div style="text-align:center;padding:4px;border-radius:4px;background:#fafafa;">31</div>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#555;">&nbsp;</div>
       </div>
     </div>
-  </div>
 
+    <div style="margin-top:15px; font-size:12px; color:#666;">
+      * Cronograma ilustrativo das principais etapas do programa ao longo de 2026.
+    </div>
+  </div>
 </div>
+
+
 
 <!-- tooltip global -->
 <div id="ganttTooltip" class="gantt-tooltip" role="tooltip" aria-hidden="true">
